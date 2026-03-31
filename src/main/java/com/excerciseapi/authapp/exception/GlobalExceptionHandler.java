@@ -12,16 +12,14 @@ import org.springframework.http.HttpStatus;
 public class GlobalExceptionHandler {
     @ExceptionHandler(UserAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiResponse handleUserExists(UserAlreadyExistsException e){
+    public ApiResponse handleUserExists(UserAlreadyExistsException e) {
         return new ApiResponse(e.getMessage());
 
     }
 
     @ExceptionHandler(UserInvalidException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ApiResponse handlerInvalidCredentials(UserInvalidException e)
-    {
+    public ApiResponse handlerInvalidCredentials(UserInvalidException e) {
         return new ApiResponse(e.getMessage());
     }
 }
-
