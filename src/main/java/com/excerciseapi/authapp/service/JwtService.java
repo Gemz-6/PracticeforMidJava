@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.excerciseapi.authapp.model.User;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 @Service
@@ -22,7 +23,8 @@ public class JwtService {
                 .claim("email", email)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 36000000))
-                .signWith(Keys.hmacShaKeyFor("glsc-pruebaApiJava_ISC948y3948ty398439".getBytes())).compact();
+                // .signWith(Keys.hmacShaKeyFor("glsc-pruebaApiJava_ISC948y3948ty398439".getBytes())).compact();
+                .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256)).compact();
 
         System.out.println(tokenBuilder);
         return tokenBuilder;
